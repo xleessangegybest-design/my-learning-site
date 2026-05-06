@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Learning - Reading, Writing, Grammar, Speaking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: #eef2ff;
+            padding: 12px;
+            border-radius: 50%;
+        }
+        h2 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            border-left: 4px solid #2a5298;
+            padding-left: 12px;
+        }
+        h3 {
+            color: #2a5298;
+            margin: 15px 0 10px;
+        }
+        .syllabus-item {
+            background: #f8faff;
+            margin: 12px 0;
+            padding: 12px;
+            border-radius: 12px;
+            border-left: 3px solid #1e3c72;
+        }
+        .week {
+            font-weight: bold;
+            color: #1e3c72;
+        }
+        .topic {
+            color: #555;
+            margin-top: 5px;
+        }
+        .today-lesson {
+            background: #e8f0fe;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+        .quiz-question {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fafafa;
+            border-radius: 12px;
+        }
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .options {
+            margin-left: 20px;
+        }
+        .option {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .match-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+            justify-content: space-between;
+        }
+        .match-col {
+            flex: 1;
+            background: #fff;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+        }
+        .match-item {
+            background: #eef2ff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+        }
+        .match-item.selected {
+            background: #1e3c72;
+            color: white;
+        }
+        .match-pair {
+            background: #d4edda;
+            padding: 5px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 5px 0;
+        }
+        button {
+            background: #1e3c72;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+            width: 100%;
+        }
+        button:hover {
+            background: #2a5298;
+        }
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: #e0e7ff;
+            border-radius: 15px;
+            display: none;
+        }
+        .score.show {
+            display: block;
+        }
+        .footer-note {
+            text-align: center;
+            margin-top: 30px;
+            color: white;
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Icon 1: About the website -->
+    <div class="card">
+        <div class="icon">📖</div>
+        <h2>About This Website</h2>
+        <p>This website helps you learn four key English skills: <strong>Reading, Writing, Grammar, and Speaking</strong>.
+        You will find a weekly syllabus, daily lessons, and an interactive quiz to test your knowledge.
+        Start learning in a fun and easy way!</p>
+    </div>
+
+    <!-- Icon 2: Syllabus + today's lesson title -->
+    <div class="card">
+        <div class="icon">📅</div>
+        <h2>Syllabus</h2>
+        <div class="syllabus-item">
+            <div class="week">📌 Week 1: Reading & Vocabulary</div>
+            <div class="topic">Short texts and understanding main ideas</div>
+        </div>
+        <div class="syllabus-item">
+            <div class="week">📌 Week 2: Writing Basics</div>
+            <div class="topic">Writing simple sentences and paragraphs</div>
+        </div>
+        <div class="syllabus-item">
+            <div class="week">📌 Week 3: Grammar (Present Simple)</div>
+            <div class="topic">Affirmative, negative and questions</div>
+        </div>
+        <div class="syllabus-item">
+            <div class="week">📌 Week 4: Speaking & Pronunciation</div>
+            <div class="topic">Introduction and daily conversations</div>
+        </div>
+        <h3>📖 Today's Lesson Topic:</h3>
+        <div class="today-lesson">
+            <strong>Today's Lesson (Reading + Grammar):</strong> "My Daily Routine" <br>
+            Learn to read short texts about daily routines and identify present simple verbs.
+        </div>
+    </div>
+
+    <!-- Icon 3: Today's Lesson (full content) -->
+    <div class="card">
+        <div class="icon">📘</div>
+        <h2>📚 Today's Lesson</h2>
+        <div class="today-lesson" style="background:#fff0e0;">
+            <strong>Reading Text:</strong> <br>
+            "I wake up at 7 am. I eat breakfast and drink coffee. Then I go to school. I study English and Math. I come back home at 3 pm." <br><br>
+            <strong>New Vocabulary:</strong> Wake up, eat breakfast, go to school, come back home.<br>
+            <strong>Grammar Rule:</strong> Add (s) to the verb with He/She/It (e.g., He wakes up).
+        </div>
+    </div>
+
+    <!-- Icon 4: Quiz -->
+    <div class="card">
+        <div class="icon">📝</div>
+        <h2>Quiz</h2>
+        <div id="quiz-container">
+            <!-- Question 1: True/False -->
+            <div class="quiz-question" id="q1">
+                <div class="question-text">1. (True/False) The verb "go" becomes "goes" with "He".</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q1" value="true"> ✔️ True</label>
+                    <label class="option"><input type="radio" name="q1" value="false"> ❌ False</label>
+                </div>
+            </div>
+
+            <!-- Question 2: Multiple Choice -->
+            <div class="quiz-question" id="q2">
+                <div class="question-text">2. (Multiple Choice) What does "Wake up" mean?</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q2" value="sleep"> To sleep</label>
+                    <label class="option"><input type="radio" name="q2" value="eat"> To eat</label>
+                    <label class="option"><input type="radio" name="q2" value="wake"> To wake up / arise</label>
+                </div>
+            </div>
+
+            <!-- Question 3: Matching (English word ⇔ Arabic meaning) -->
+            <div class="quiz-question" id="q3">
+                <div class="question-text">3. (Matching) Match each English word to its correct meaning in Arabic:</div>
+                <div class="match-row">
+                    <div class="match-col">
+                        <strong>English Word</strong>
+                        <div class="match-item" data-word="read">Read</div>
+                        <div class="match-item" data-word="write">Write</div>
+                        <div class="match-item" data-word="speak">Speak</div>
+                    </div>
+                    <div class="match-col">
+                        <strong>Meaning (Arabic)</strong>
+                        <div class="match-item" data-meaning="يقرأ">يقرأ</div>
+                        <div class="match-item" data-meaning="يكتب">يكتب</div>
+                        <div class="match-item" data-meaning="يتكلم">يتكلم</div>
+                    </div>
+                </div>
+                <div id="match-feedback" style="font-size:14px; margin-top:10px; color:#555;"></div>
+                <div id="match-status"></div>
+            </div>
+
+            <button onclick="calculateScore()">✅ Submit Quiz & Show Score</button>
+            <div id="scoreDisplay" class="score"></div>
+        </div>
+    </div>
+</div>
+<div class="footer-note">
+    Your name appears in the file name (e.g., john.html) ✅ Fully interactive website
+</div>
+
+<script>
+    // Matching logic: English word ⇔ Arabic meaning
+    let selectedWord = null;
+    let matches = {
+        "read": null,
+        "write": null,
+        "speak": null
+    };
+    let correctMatches = {
+        "read": "يقرأ",
+        "write": "يكتب",
+        "speak": "يتكلم"
+    };
+
+    // Add click listeners for English words
+    document.querySelectorAll('[data-word]').forEach(el => {
+        el.addEventListener('click', function() {
+            document.querySelectorAll('[data-word]').forEach(w => w.classList.remove('selected'));
+            this.classList.add('selected');
+            selectedWord = this.getAttribute('data-word');
+            updateMatchFeedback();
+        });
+    });
+
+    // Add click listeners for Arabic meanings
+    document.querySelectorAll('[data-meaning]').forEach(el => {
+        el.addEventListener('click', function() {
+            if (selectedWord) {
+                const meaning = this.getAttribute('data-meaning');
+                matches[selectedWord] = meaning;
+                updateMatchDisplay();
+                document.querySelectorAll('[data-word]').forEach(w => w.classList.remove('selected'));
+                selectedWord = null;
+                updateMatchFeedback();
+            } else {
+                document.getElementById('match-feedback').innerHTML = "⚠️ First select an English word, then click its Arabic meaning.";
+                setTimeout(() => { 
+                    if(document.getElementById('match-feedback').innerHTML.includes("First select")) 
+                        document.getElementById('match-feedback').innerHTML = ""; 
+                }, 2000);
+            }
+        });
+    });
+
+    function updateMatchDisplay() {
+        let statusHtml = "<strong>Your matches:</strong><br>";
+        for (let [word, meaning] of Object.entries(matches)) {
+            if (meaning) {
+                statusHtml += `<div class="match-pair">${word} → ${meaning}</div>`;
+            } else {
+                statusHtml += `<div class="match-pair" style="background:#ffe0e0;">${word} → (not matched yet)</div>`;
+            }
+        }
+        document.getElementById('match-status').innerHTML = statusHtml;
+    }
+
+    function updateMatchFeedback() {
+        if (selectedWord) {
+            document.getElementById('match-feedback').innerHTML = `✅ Selected: ${selectedWord} - Now click the correct Arabic meaning.`;
+        } else {
+            document.getElementById('match-feedback').innerHTML = "";
+        }
+    }
+
+    // Calculate total score
+    function calculateScore() {
+        let totalScore = 0;
+        let totalQuestions = 3;
+
+        // Q1: True/False (correct answer = true)
+        const q1Answer = document.querySelector('input[name="q1"]:checked');
+        if (q1Answer && q1Answer.value === "true") {
+            totalScore++;
+        }
+
+        // Q2: Multiple choice (correct answer = wake)
+        const q2Answer = document.querySelector('input[name="q2"]:checked');
+        if (q2Answer && q2Answer.value === "wake") {
+            totalScore++;
+        }
+
+        // Q3: Matching (all three must be correct, English → Arabic)
+        let matchCorrectCount = 0;
+        for (let [word, meaning] of Object.entries(matches)) {
+            if (correctMatches[word] === meaning) {
+                matchCorrectCount++;
+            }
+        }
+        if (matchCorrectCount === 3) {
+            totalScore++;
+        }
+
+        // Display score
+        const scoreDiv = document.getElementById('scoreDisplay');
+        scoreDiv.innerHTML = `🎉 Your score: ${totalScore} out of ${totalQuestions} 🎉<br>`;
+        if (totalScore === 3) {
+            scoreDiv.innerHTML += "⭐ Excellent! You mastered the quiz ⭐";
+        } else if (totalScore === 2) {
+            scoreDiv.innerHTML += "👍 Good job! Review the lesson one more time.";
+        } else {
+            scoreDiv.innerHTML += "📚 Keep practicing! Review the lesson and try again.";
+        }
+        scoreDiv.classList.add('show');
+        scoreDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Initialize matching display
+    updateMatchDisplay();
+</script>
+</body>
+</html>
